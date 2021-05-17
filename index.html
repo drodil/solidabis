@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Car consumption comparator</title>
+        <link rel="stylesheet" href="cars.css"></link> 
+    </head>
+    <body>
+        <form id="carForm">
+            <div class="input">
+                <label for="distance">Distance (km)</label>
+                <input id="distance" name="distance" type="number" min="1" required value="200">
+            </div>
+
+            <div class="input">
+                <label for="speed1">Speed 1 (km/h)</label>
+                <input id="speed1" name="speed1" type="number" min="1" required value="80">
+            </div>
+
+            <div class="input">
+                <label for="speed2">Speed 2 (km/h)</label>
+                <input id="speed2" name="speed2" type="number" min="1" required value="100">
+            </div>
+            
+            <div class="input">
+                <input type="radio" id="vehicleA" name="vehicle" value="A" checked>
+                <label for="vehicleA">Car A</label>
+            </div>
+            <div class="input">
+                <input type="radio" id="vehicleB" name="vehicle" value="B">
+                <label for="vehicleB">Car B</label>
+            </div>
+            <div class="input">
+                <input type="radio" id="vehicleC" name="vehicle" value="C">
+                <label for="vehicleC">Car C</label>
+            </div>
+            <div class="input">
+                <button id="drive" type="submit">DRIVE!</button>
+            </div>
+        </form>
+
+        <div id="results">
+            <div class="road">
+                <div class="lane" id="lane1">
+                    <div id="car1" class="carA"></div>
+                </div>
+                <div id="car1duration" class="duration"></div>
+                <div id="car1consumption" class="consumption"></div>
+            </div>
+            <div class="road">
+                <div class="lane" id="lane2">
+                    <div id="car2" class="carA fast"></div>
+                </div>
+                <div id="car2duration" class="duration"></div>
+                <div id="car2consumption" class="consumption"></div>
+            </div>
+        </div>
+
+        <script src="cars.js"></script>
+    </body>
+</html>

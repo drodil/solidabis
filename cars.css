@@ -1,0 +1,34 @@
+label {
+    vertical-align: top;
+}
+.input {
+    display: block;
+}
+
+.road {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    border: 1px solid black;
+}
+
+.road .lane {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    transition: all 5s;
+    animation-fill-mode: forwards;
+}
+
+.carA {
+    position: absolute;
+    transition: inherit;
+    display: block;
+    background-color: red;
+    height: 50px;
+    width: 50px;
+}
+
+.carA.fast {
+    background-color: blue;
+}
