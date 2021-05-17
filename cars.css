@@ -1,15 +1,45 @@
+html, body, input, textarea, button {
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+}
+
+body {
+    background-image: url(res/bg.svg);
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    overflow: hidden;
+}
+
+form {
+    background-color: white;
+    color: black;
+    padding: 1em;
+    font-size: 1em;
+    width: 250px;
+    float: right;
+}
+
 label {
     vertical-align: top;
 }
+
 .input {
     display: block;
 }
 
+#results {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+}
+
 .road {
+    background-image: url(res/road.svg);
+    background-size: 110px 100%;
     position: relative;
     width: 100%;
-    height: 60px;
-    border: 1px solid black;
+    height: 110px;
+    margin-bottom: 50px;
 }
 
 .road .lane {
@@ -17,18 +47,17 @@ label {
     width: 100%;
     height: 50px;
     transition: all 5s;
-    animation-fill-mode: forwards;
 }
 
-.carA {
+.car {
     position: absolute;
     transition: inherit;
     display: block;
-    background-color: red;
     height: 50px;
-    width: 50px;
+    width: 100px;
 }
 
-.carA.fast {
-    background-color: blue;
+.carA {
+    background-image: url(res/carA.svg);
+    background-size: 100px 50px;
 }
