@@ -31,8 +31,7 @@ class Duration {
   toString(compare) {
     return (
       (this.negative ? "-" : compare ? "+" : "") +
-      this.hours +
-      "h, " +
+      (this.hours > 0 ? this.hours + "h, " : "") +
       this.minutes +
       "min"
     );
@@ -50,6 +49,10 @@ class Consumption {
   }
 
   toString(compare) {
+    if (Math.abs(this.consumption) === Infinity) {
+      return "TOO MUCH!";
+    }
+
     return (
       (compare && !this.negative ? "+" : "") +
       this.consumption.toFixed(2) +
@@ -144,8 +147,8 @@ function getConsumption(baseConsumption, speed, distance) {
 // Starts driving
 function drive(consumption, distance, speed1, speed2) {
   // Calculate relative speed to another car
-  const lane1Duration = Math.min((speed2 / speed1) * 1500, 10000);
-  const lane2Duration = Math.min((speed1 / speed2) * 1500, 10000);
+  const lane1Duration = Math.max(500, Math.min((speed2 / speed1) * 1500, 5000));
+  const lane2Duration = Math.max(500, Math.min((speed1 / speed2) * 1500, 5000));
 
   const anim1 = animateCar(document.querySelector("#lane1"), lane1Duration);
   const anim2 = animateCar(document.querySelector("#lane2"), lane2Duration);
