@@ -8,11 +8,17 @@ const consumptionIncrease = 1.009;
 // Runs once the DOM is loaded
 (function() {
    const landscape = document.getElementById('landscape');
+
+   // Generate trees
    const tree = document.querySelector('.tree');
-   for(var i = 0; i < 20; ++i) {
+   for(var i = 0; i < 15; ++i) {
         const newTree = tree.cloneNode(true);
-        const top = Math.floor(Math.random() * 50) + 20;
+        const top = Math.floor(Math.random() * 50) + 30;
         const left = Math.floor(Math.random() * 70);
+        const width = Math.floor(Math.random() * 100) + 60;
+        const height = width * 1.666666;
+        newTree.style.width = width + 'px';
+        newTree.style.height = height + 'px';
         newTree.style.top = top + '%';
         newTree.style.left = left + '%';
         newTree.style.zIndex = top;
@@ -51,6 +57,7 @@ function getConsumption(baseConsumption, speed, distance) {
 }
 
 function drive(consumption, distance, speed1, speed2) {
+    // Calculate relative speed to another car
     const lane1Duration = Math.min(speed2 / speed1 * 1500, 10000);
     const lane2Duration = Math.min(speed1 / speed2 * 1500, 10000);
 

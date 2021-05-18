@@ -93,7 +93,7 @@ label {
 .tree {
     position: absolute;
     background-image: url(res/tree.svg);
-    background-size: 120px 200px;
+    background-size: 100% 100%;
     width: 120px;
     height: 200px;
     top: 50%;
