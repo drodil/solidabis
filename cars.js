@@ -51,7 +51,7 @@ class Consumption {
 
   toString(compare) {
     return (
-      (this.compare && !this.negative ? "+" : "") +
+      (compare && !this.negative ? "+" : "") +
       this.consumption.toFixed(2) +
       " l"
     );
