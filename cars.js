@@ -25,6 +25,30 @@ const consumptionIncrease = 1.009;
         landscape.appendChild(newTree);
    }
 
+   const cloud = document.querySelector('.cloud');
+   for(var j = 0; j < 10; ++j) {
+       const newCloud = cloud.cloneNode(true);
+       const top = Math.floor(Math.random() * 20) - 10;
+       const left = Math.floor(Math.random() * 140) - 40;
+       const height = Math.floor(Math.random() * 100) + 50;
+       const width = height * 2;
+       newCloud.style.width = width + 'px';
+       newCloud.style.height = height + 'px';
+       newCloud.style.top = top + '%';
+       newCloud.style.left = left + '%';
+       newCloud.style.zIndex = top;
+       landscape.appendChild(newCloud);
+       newCloud.animate([
+        { transform: 'translateX(-200%)' },
+        { transform: 'translateX(200%)' },
+        { transform: 'translateX(-200%)' },
+       ],
+       {
+           duration: Math.floor(Math.random() * 20000) + 60000,
+           iterations: Infinity,
+       });
+   }
+
 })();
 
 function animateCar(elem, duration) {
