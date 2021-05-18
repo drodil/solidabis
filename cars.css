@@ -93,6 +93,7 @@ label {
     width: 310px;
     height: 60px;
     border: 6px solid #ffd42a;
+    white-space: nowrap;
 }
 
 .landscape {
