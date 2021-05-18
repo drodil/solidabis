@@ -1,11 +1,12 @@
 <html>
     <head>
-        <title>Car consumption comparator</title>
+        <title>Epic Car Fuel Consumption Comparator</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="cars.css"></link> 
     </head>
     <body>
+        <h1>Epic Car Fuel Consumption Comparator</h1>
         <form id="carForm">
             <div class="input">
                 <label for="distance">Distance (km)</label>
@@ -13,12 +14,12 @@
             </div>
 
             <div class="input">
-                <label for="speed1">Speed 1 (km/h)</label>
+                <label for="speed1">Car 1 speed (km/h)</label>
                 <input id="speed1" name="speed1" type="number" min="1" required value="80">
             </div>
 
             <div class="input">
-                <label for="speed2">Speed 2 (km/h)</label>
+                <label for="speed2">Car 2 speed (km/h)</label>
                 <input id="speed2" name="speed2" type="number" min="1" required value="100">
             </div>
             
@@ -42,12 +43,14 @@
         <div id="driveway">
             <div class="road">
                 <div id="car1results" class="results"></div>
+                <div class="laneNumber">Car 1</div>
                 <div class="lane" id="lane1">
                     <div id="car1" class="car carA"></div>
                 </div>
             </div>
             <div class="road">
                 <div id="car2results" class="results"></div>
+                <div class="laneNumber">Car 2</div>
                 <div class="lane" id="lane2">
                     <div id="car2" class="car carA"></div>
                 </div>

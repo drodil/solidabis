@@ -13,15 +13,17 @@ const consumptionIncrease = 1.009;
    const tree = document.querySelector('.tree');
    for(var i = 0; i < 15; ++i) {
         const newTree = tree.cloneNode(true);
-        const top = Math.floor(Math.random() * 50) + 30;
+        const top = Math.floor(Math.random() * 60) + 30;
         const left = Math.floor(Math.random() * 70);
         const width = Math.floor(Math.random() * 100) + 60;
         const height = width * 1.666666;
-        newTree.style.width = width + 'px';
-        newTree.style.height = height + 'px';
-        newTree.style.top = top + '%';
-        newTree.style.left = left + '%';
-        newTree.style.zIndex = top;
+        Object.assign(newTree.style, {
+            width: width + 'px',
+            height: height + 'px',
+            top: top + '%',
+            left: left + '%',
+            zIndex: top
+        });
         landscape.appendChild(newTree);
    }
 
@@ -32,11 +34,13 @@ const consumptionIncrease = 1.009;
        const left = Math.floor(Math.random() * 140) - 40;
        const height = Math.floor(Math.random() * 100) + 50;
        const width = height * 2;
-       newCloud.style.width = width + 'px';
-       newCloud.style.height = height + 'px';
-       newCloud.style.top = top + '%';
-       newCloud.style.left = left + '%';
-       newCloud.style.zIndex = top;
+       Object.assign(newCloud.style, {
+            width: width + 'px',
+            height: height + 'px',
+            top: top + '%',
+            left: left + '%',
+            zIndex: top
+       });
        landscape.appendChild(newCloud);
        newCloud.animate([
         { transform: 'translateX(-200%)' },
