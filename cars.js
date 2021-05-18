@@ -112,7 +112,7 @@ class Consumption {
 
 // Animates car on the road
 function animateCar(elem, duration) {
-  return elem?.animate(
+  return elem.animate(
     [
       { transform: "translateX(0px)" },
       { transform: "translateX(100%) translateX(-50px)" },
