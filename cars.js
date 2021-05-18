@@ -46,7 +46,6 @@ function getDuration(distance, speed) {
 
 function getConsumption(baseConsumption, speed, distance) {
     const consumption = baseConsumption * Math.pow(consumptionIncrease, (speed - 1)); 
-    console.log(consumption);
     const totalConsumption = (distance / 100) * consumption;
     return totalConsumption.toFixed(2) + " liters";
 }
@@ -64,13 +63,18 @@ function drive(consumption, distance, speed1, speed2) {
     const car2Consumption = getConsumption(consumption, speed2, distance);
 
     anim1.onfinish = function(e) {
-        document.querySelector('#car1results').innerHTML = car1Duration + '<br>' + car1Consumption;
+        document.querySelector('#car1results').innerHTML = 'Duration: ' + car1Duration + 
+        '<br>Consumption: ' + car1Consumption +
+        '<br>Speed: ' + speed1 + ' km/h';
     };
     anim2.onfinish = function(e) {
-        document.querySelector('#car2results').innerHTML = car2Duration + '<br>' + car2Consumption;
+        document.querySelector('#car2results').innerHTML = 'Duration: ' + car2Duration + 
+        '<br>Consumption: ' + car2Consumption +
+        '<br>Speed: ' + speed2 + ' km/h';
     }
 }
 
+// Resets results
 function resetState() {
     const elems = document.querySelectorAll('.results');
     [].forEach.call(elems, function(elem) {
@@ -78,6 +82,20 @@ function resetState() {
     });
 }
 
+// Changing of car model
+const vehicleInputs = document.getElementsByName('vehicle');
+[].forEach.call(vehicleInputs, function(elem) {
+    elem.addEventListener('change', (event) => {
+        [].forEach.call(document.getElementsByClassName('car'), function(carElem) {
+            carElem.classList.remove('carA');
+            carElem.classList.remove('carB');
+            carElem.classList.remove('carC');
+            carElem.classList.add('car' + event.target.value);
+        });
+    });
+});
+
+// Submit form, start driving
 document.querySelector("#carForm").addEventListener("submit", function(e) {
     e.preventDefault();
     resetState();
