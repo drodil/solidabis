@@ -5,6 +5,22 @@ const vehicleConsumption = {
 };
 const consumptionIncrease = 1.009;
 
+// Runs once the DOM is loaded
+(function() {
+   const landscape = document.getElementById('landscape');
+   const tree = document.querySelector('.tree');
+   for(var i = 0; i < 20; ++i) {
+        const newTree = tree.cloneNode(true);
+        const top = Math.floor(Math.random() * 50) + 20;
+        const left = Math.floor(Math.random() * 70);
+        newTree.style.top = top + '%';
+        newTree.style.left = left + '%';
+        newTree.style.zIndex = top;
+        landscape.appendChild(newTree);
+   }
+
+})();
+
 function animateCar(elem, duration) {
     return elem?.animate([
         { transform: 'translateX(0px)' },
@@ -48,17 +64,15 @@ function drive(consumption, distance, speed1, speed2) {
     const car2Consumption = getConsumption(consumption, speed2, distance);
 
     anim1.onfinish = function(e) {
-        document.querySelector('#car1duration').innerHTML = car1Duration;
-        document.querySelector('#car1consumption').innerHTML = car1Consumption;
+        document.querySelector('#car1results').innerHTML = car1Duration + '<br>' + car1Consumption;
     };
     anim2.onfinish = function(e) {
-        document.querySelector('#car2duration').innerHTML = car2Duration;
-        document.querySelector('#car2consumption').innerHTML = car2Consumption;
+        document.querySelector('#car2results').innerHTML = car2Duration + '<br>' + car2Consumption;
     }
 }
 
 function resetState() {
-    const elems = document.querySelectorAll('.duration, .consumption');
+    const elems = document.querySelectorAll('.results');
     [].forEach.call(elems, function(elem) {
         elem.innerHTML = '';
     });

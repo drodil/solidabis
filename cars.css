@@ -16,7 +16,11 @@ form {
     padding: 1em;
     font-size: 1em;
     width: 250px;
-    float: right;
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    z-index: 1000;
+    border: 2px solid black;
 }
 
 label {
@@ -27,9 +31,9 @@ label {
     display: block;
 }
 
-#results {
+#driveway {
     position: absolute;
-    width: 100%;
+    width: 80%;
     top: 50%;
 }
 
@@ -60,4 +64,30 @@ label {
 .carA {
     background-image: url(res/carA.svg);
     background-size: 100px 50px;
+}
+
+.results {
+    position: absolute;
+    right: -120px;
+    padding: 17px;
+    background-color: white;
+    top: 35px;
+    width: 140px;
+    height: 50px;
+    border: 6px solid #ffd42a;
+}
+
+.landscape {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.tree {
+    position: absolute;
+    background-image: url(res/tree.svg);
+    background-size: 120px 200px;
+    width: 120px;
+    height: 200px;
+    top: 50%;
 }
