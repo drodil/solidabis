@@ -5,6 +5,46 @@ const vehicleConsumption = {
 };
 const consumptionIncrease = 1.009;
 
+class Duration {
+    constructor(mins) {
+        this.negative = mins < 0;
+        if(this.negative) {
+            mins = -mins;
+        }
+        const hours = (mins / 60);
+        const rhours = Math.floor(hours);
+        const minutes = (hours - rhours) * 60;
+        const rminutes = Math.round(minutes);
+        this.hours = rhours;
+        this.minutes = rminutes;
+    }
+
+    compare(other) {
+        const totalMinutes = (this.hours * 60) + this.minutes;
+        const otherminutes = (other.hours * 60) + other.minutes;
+        return new Duration(totalMinutes - otherminutes);
+    }
+
+    toString(compare) {
+        return (this.negative ? '-' : compare ? '+' : '') + this.hours + 'h, ' + this.minutes + 'min'
+    }
+}
+
+class Consumption {
+    constructor(consumption) {
+        this.negative = consumption < 0;
+        this.consumption = consumption;
+    }
+
+    compare(other) {
+      return new Consumption(this.consumption - other.consumption);
+    }
+
+    toString(compare) {
+      return (this.compare && !this.negative ? '+': '') + this.consumption.toFixed(2) + ' l'
+    }
+}
+
 // Runs once the DOM is loaded
 (function() {
    const landscape = document.getElementById('landscape');
@@ -71,17 +111,13 @@ function animateCar(elem, duration) {
 
 function getDuration(distance, speed) {
     const mins = (distance / speed) * 60;
-    const hours = (mins / 60);
-    const rhours = Math.floor(hours);
-    const minutes = (hours - rhours) * 60;
-    const rminutes = Math.round(minutes);
-    return rhours + "h, " + rminutes + " min"
+    return new Duration(mins);
 }
 
 function getConsumption(baseConsumption, speed, distance) {
     const consumption = baseConsumption * Math.pow(consumptionIncrease, (speed - 1)); 
     const totalConsumption = (distance / 100) * consumption;
-    return totalConsumption.toFixed(2) + " liters";
+    return new Consumption(totalConsumption);
 }
 
 function drive(consumption, distance, speed1, speed2) {
@@ -98,13 +134,15 @@ function drive(consumption, distance, speed1, speed2) {
     const car2Consumption = getConsumption(consumption, speed2, distance);
 
     anim1.onfinish = function(e) {
-        document.querySelector('#car1results').innerHTML = 'Duration: ' + car1Duration + 
-        '<br>Consumption: ' + car1Consumption +
+        document.querySelector('#car1results').innerHTML = 
+        'Duration: ' + car1Duration.toString() + ' (' + car1Duration.compare(car2Duration).toString(true) + ')' +
+        '<br>Consumption: ' + car1Consumption.toString() + ' (' + car1Consumption.compare(car2Consumption).toString(true) + ')' +
         '<br>Speed: ' + speed1 + ' km/h';
     };
     anim2.onfinish = function(e) {
-        document.querySelector('#car2results').innerHTML = 'Duration: ' + car2Duration + 
-        '<br>Consumption: ' + car2Consumption +
+        document.querySelector('#car2results').innerHTML = 
+        'Duration: ' + car2Duration.toString() + ' (' + car2Duration.compare(car1Duration).toString(true) + ')' +
+        '<br>Consumption: ' + car2Consumption.toString() + ' (' + car2Consumption.compare(car1Consumption).toString(true) + ')' +
         '<br>Speed: ' + speed2 + ' km/h';
     }
 }

@@ -86,11 +86,11 @@ label {
 
 .results {
     position: absolute;
-    right: -240px;
+    right: -310px;
     padding: 17px;
     background-color: white;
     top: 35px;
-    width: 240px;
+    width: 310px;
     height: 60px;
     border: 6px solid #ffd42a;
 }
